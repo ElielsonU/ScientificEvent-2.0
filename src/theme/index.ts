@@ -1,3 +1,4 @@
 import colors from "./colors";
+import sources from "./sources";
 
-export { colors }
+export { colors, sources}

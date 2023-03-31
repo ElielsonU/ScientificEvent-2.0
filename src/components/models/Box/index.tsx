@@ -1,19 +1,30 @@
-import styled from "styled-components";
-import { ContentProps, ItemsProps } from "@/props";
+import styled, { css } from "styled-components";
+import { getElement } from "@/utils/algorithm";
+import { 
+    ContentProps,
+    DisplayProps, 
+    ItemsProps, 
+    LinearGradientProps, 
+    FlexDirectionProps,
+    BreakPointsProps,
+} from "@/types";
 
 interface StyledBoxProps {
     alignContent?: ContentProps;
     alignItems?: ItemsProps;
     backgroundColor?: string;
     backgroundImage?: string;
-    backgroundSize? : "contain" | "center" | string;
-    display?: "flex" | "grid";
+    backgroundSize?: string;
+    BoxSize?: BreakPointsProps;
+    display?: DisplayProps;
+    flexDirection?: FlexDirectionProps;
     fontSize?: string;
     gridTemplateColumns?: string;
     gridTemplateRows?: string;
     height? : string;
     justifyContent?: ContentProps | "space-evenly"; 
     justifyItems?: ItemsProps;
+    linearGradient?: LinearGradientProps;
     width?: string;
 }
 
@@ -34,6 +45,16 @@ const Box = styled.div<StyledBoxProps>`
     justify-content: ${props => props.justifyContent};
     justify-items: ${props => props.justifyItems};
     width: ${props => props.width};
+
+    ${({linearGradient}) => {
+        if (linearGradient) {
+            return css`
+                background: linear-gradient( ${linearGradient.degrees}, ${linearGradient.c1} 50%, ${linearGradient.c2} 50% );
+            `
+        }
+    }}
+
+
 `
 
 export default Box
