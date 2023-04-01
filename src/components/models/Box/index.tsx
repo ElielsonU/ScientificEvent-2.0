@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { getElement } from "@/utils/algorithm";
+import breakpoints from "@/styles/breakpoints";
+import { getMediaQuery } from "@/utils/algorithm";
 import { 
     ContentProps,
     DisplayProps, 
@@ -53,7 +54,13 @@ const Box = styled.div<StyledBoxProps>`
             `
         }
     }}
-
+    ${({BoxSize}) => {
+        if (BoxSize) {
+            return breakpoints.map((breakpoint) => (
+                 getMediaQuery(BoxSize, breakpoint)
+            ))
+        }
+    }}
 
 `
 

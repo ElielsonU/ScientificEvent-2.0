@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { ContentProps, ItemsProps } from "@/types";
 import breakpoints from "@/styles/breakpoints";
-import { getElement } from "@/utils/algorithm";
+import { getMediaQuery } from "@/utils/algorithm";
 
 type BreakPointsValuesProps = {
     width: number;
@@ -13,18 +13,6 @@ type BreakPointsProps = {
     md?: BreakPointsValuesProps;
     sm?: BreakPointsValuesProps;
     xs?: BreakPointsValuesProps;
-}
-
-const mediaGenerator = (breakpoints: BreakPointsProps, breakpoint: any) => {
-    const value = getElement(breakpoints, breakpoint.name)
-    if (value) {
-        return css`
-            @media (max-width: ${breakpoint.size}px) {
-                width: ${value.width}px;
-                height: ${value.height}px;
-            }
-        `
-    }
 }
 
 interface FormProps {
@@ -50,7 +38,7 @@ const Form = styled.form<FormProps>`
     ${({formSize}) => {
         if(formSize){
             return breakpoints.map((breakpoint) => (
-                mediaGenerator(formSize, breakpoint)            
+                getMediaQuery(formSize, breakpoint)            
             )
         )}
     }}
