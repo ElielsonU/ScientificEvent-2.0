@@ -1,5 +1,5 @@
 import { css } from "styled-components"
-import { BreakPointsProps } from "@/types"
+import { BreakPointsProps } from "@/theme/types"
 
 const getElement = (obj: any, key: string) => {
     if (Object.hasOwn(obj, key)) {

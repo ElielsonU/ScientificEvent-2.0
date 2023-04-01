@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Box, Form } from "@/components/models";
 import { colors, sources } from "@/theme";
+import LoginForm from "@/components/sets/LoginForm";
 
 export default function LoginPage()
 {
@@ -16,22 +17,15 @@ export default function LoginPage()
             <Box backgroundImage={sources.loginBackground} height="100%" backgroundSize="cover">
                 <Box linearGradient={{
                     c1: colors.c3, 
-                    c2: colors.transparent, 
+                    c2: colors.transparent,
                     degrees: "45deg"
                 }} 
                 height="100%" 
                 display="flex" 
                 justifyContent="center" 
                 alignItems="center">
-                    <Form 
-                    formSize={{
-                        lg: { width: 400, height: 500 },
-                        md: { width: 350, height: 400 },
-                    }} 
-                    backgorundColor={colors.c2}
-                    borderRadius="10px">
-                        
-                    </Form>
+                    
+                    <LoginForm />
                     
                 </Box>
             </Box>

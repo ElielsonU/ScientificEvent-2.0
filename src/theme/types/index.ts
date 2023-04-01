@@ -9,12 +9,24 @@ type BreakPointsProps = {
 type BreakPointsValuesProps = { width: number; height: number; }
 
 type ContentProps = "space-between" | "space-around" | ItemsProps;
-type FlexDirectionProps = "row" | "row-reverse" | "column" | "column-reverse";
 type DisplayProps = "flex" | "grid";
+type FlexDirectionProps = "row" | "row-reverse" | "column" | "column-reverse";
 type LinearGradientProps = {
     degrees?: string;
     c1?: string;
     c2?: string;
+}
+
+type InputProps = {
+    backgroundColor?: string;
+    borderColor?: string;
+    borderRadius?: string;
+    borderWidth?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    height?: string;
+    padding?: string;
+    width?: string;
 }
 
 export type { 
@@ -24,5 +36,6 @@ export type {
     DisplayProps,
     FlexDirectionProps,
     LinearGradientProps, 
+    InputProps,
     ItemsProps, 
 }

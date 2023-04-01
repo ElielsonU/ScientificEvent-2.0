@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { ContentProps, ItemsProps } from "@/types";
+import styled from "styled-components";
+import { ContentProps, FlexDirectionProps, ItemsProps } from "@/theme/types";
 import breakpoints from "@/styles/breakpoints";
 import { getMediaQuery } from "@/utils/algorithm";
 
@@ -19,6 +19,7 @@ interface FormProps {
     alignItems?: ItemsProps;
     backgorundColor?: string;
     borderRadius?: string;
+    flexDirection?: FlexDirectionProps;
     formSize?: BreakPointsProps;
     justifyContent?: ContentProps | "space-evenly";
     heigth?: string;
@@ -32,6 +33,7 @@ const Form = styled.form<FormProps>`
     display: flex;
     flex-wrap: wrap;
     justify-content: ${props => props.justifyContent};
+    flex-direction: ${props => props.flexDirection};
     height: ${props => props.heigth};
     transition: all 50ms ease-in ;
     width: ${props => props.width};

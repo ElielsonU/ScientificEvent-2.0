@@ -8,7 +8,7 @@ import {
     LinearGradientProps, 
     FlexDirectionProps,
     BreakPointsProps,
-} from "@/types";
+} from "@/theme/types";
 
 interface StyledBoxProps {
     alignContent?: ContentProps;
@@ -20,6 +20,7 @@ interface StyledBoxProps {
     display?: DisplayProps;
     flexDirection?: FlexDirectionProps;
     fontSize?: string;
+    fontWeight?: string;
     gridTemplateColumns?: string;
     gridTemplateRows?: string;
     height? : string;
@@ -39,7 +40,9 @@ const Box = styled.div<StyledBoxProps>`
     color: ${props => props.color};
     display: ${props => props.display};
     flex-wrap: wrap;
+    flex-direction: ${props => props.flexDirection};
     font-size: ${props => props.fontSize};
+    font-weight: ${props => props.fontWeight};
     grid-template-columns: ${props => props.gridTemplateColumns};
     grid-template-rows: ${props => props.gridTemplateRows};
     height: ${props => props.height};
