@@ -27,6 +27,8 @@ interface StyledBoxProps {
     justifyContent?: ContentProps | "space-evenly"; 
     justifyItems?: ItemsProps;
     linearGradient?: LinearGradientProps;
+    outlineColor?: string;
+    outlineWidth?: string;
     width?: string;
 }
 
@@ -48,6 +50,8 @@ const Box = styled.div<StyledBoxProps>`
     height: ${props => props.height};
     justify-content: ${props => props.justifyContent};
     justify-items: ${props => props.justifyItems};
+    outline-color: ${props => props.outlineColor};
+    outline-width: ${props => props.outlineWidth};
     width: ${props => props.width};
 
     ${({linearGradient}) => {

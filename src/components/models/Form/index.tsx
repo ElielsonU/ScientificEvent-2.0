@@ -15,7 +15,7 @@ type BreakPointsProps = {
     xs?: BreakPointsValuesProps;
 }
 
-interface FormProps {
+interface StyledFormProps {
     alignItems?: ItemsProps;
     backgorundColor?: string;
     borderRadius?: string;
@@ -23,10 +23,12 @@ interface FormProps {
     formSize?: BreakPointsProps;
     justifyContent?: ContentProps | "space-evenly";
     heigth?: string;
+    outlineColor?: string;
+    outlineWidth?: string;
     width?: string;
 }
 
-const Form = styled.form<FormProps>`
+const Form = styled.form<StyledFormProps>`
     align-items: ${props => props.alignItems};
     background-color: ${props => props.backgorundColor};
     border-radius: ${props => props.borderRadius};
@@ -35,7 +37,9 @@ const Form = styled.form<FormProps>`
     justify-content: ${props => props.justifyContent};
     flex-direction: ${props => props.flexDirection};
     height: ${props => props.heigth};
-    transition: all 50ms ease-in ;
+    outline-color: ${props => props.outlineColor};
+    outline-width: ${props => props.outlineWidth};
+    transition: all 50ms ease-in;
     width: ${props => props.width};
     ${({formSize}) => {
         if(formSize){

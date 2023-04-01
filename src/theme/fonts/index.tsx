@@ -1,8 +1,9 @@
 export default {
-    f1: "36px",
-    f2: "32px",
-    f3: "28px",
-    f4: "24px",
-    f5: "18px",
-    f6: "14px"
+    f1: "3.4rem",
+    f2: "2.6rem",
+    f3: "2.2rem",
+    f4: "2rem",
+    f5: "1.5rem",
+    f6: "1.2rem",
+    f7: "1rem"
 }
