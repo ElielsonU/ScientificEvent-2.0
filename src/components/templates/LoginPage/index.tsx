@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import { Box, Form } from "@/components/models";
+import { Box } from "@/components/models";
 import { colors, sources } from "@/theme";
-import LoginForm from "@/components/sets/LoginForm";
+import { LoginForm, SignUpForm } from "@/components/sets";
 
 export default function LoginPage()
 {
+    const [form, setForm] = useState(false)
+
+    const changeForm = (event: React.MouseEvent) => {
+        event.preventDefault()
+        setForm(!form)
+    } 
+
     return (
         <>
             <Head>
@@ -24,8 +31,10 @@ export default function LoginPage()
                 display="flex" 
                 justifyContent="center" 
                 alignItems="center">
-                    
-                    <LoginForm />
+                    {form
+                    ?<SignUpForm changeForm={changeForm}/>
+                    :<LoginForm changeForm={changeForm}/>
+                    }
                     
                 </Box>
             </Box>
