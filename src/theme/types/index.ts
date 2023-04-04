@@ -29,6 +29,14 @@ type InputProps = {
     width?: string;
 }
 
+interface UserProps {
+    username: string;
+    password: string;
+    email: string;
+    token: string;
+}
+
+
 export type { 
     BreakPointsProps,
     BreakPointsValuesProps,
@@ -38,4 +46,5 @@ export type {
     LinearGradientProps, 
     InputProps,
     ItemsProps, 
+    UserProps,
 }

@@ -1,6 +1,8 @@
 import { colors, fonts, weights, radius, thickness, widths } from "@/theme";
 import { Form, Box, Button } from "@/components/models";
-import { BlueInput } from "@/components/sets"
+import { BlueInput } from "@/components/sets";
+import { signup } from "@/utils/api-connection";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 interface SignUpFormProps { changeForm: React.MouseEventHandler; }
@@ -8,7 +10,7 @@ interface SignUpFormProps { changeForm: React.MouseEventHandler; }
 const SignUpForm:React.FC<SignUpFormProps> = ({
     changeForm,
 }) => {
-
+    const router = useRouter()
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -29,8 +31,9 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
         setUsername(value)
     }
 
-    const formSubmit = (event: React.FormEvent) => { 
+    const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
+        if (await signup(username, email, password)){ router.push("/home") }
      }
 
     return <Form formSize={{

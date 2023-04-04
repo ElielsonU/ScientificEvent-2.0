@@ -1,7 +1,8 @@
 import { colors, fonts, weights, radius, thickness, widths } from "@/theme";
 import { Form, Box, Button } from "@/components/models";
-import { login } from "@/utils/apiConnection";
+import { login } from "@/utils/api-connection";
 import { BlueInput } from "@/components/sets";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 interface LoginFormProps { changeForm: React.MouseEventHandler; }
@@ -9,7 +10,7 @@ interface LoginFormProps { changeForm: React.MouseEventHandler; }
 const LoginForm:React.FC<LoginFormProps> = ({
     changeForm,
 }) => {
-
+    const router = useRouter()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -24,9 +25,9 @@ const LoginForm:React.FC<LoginFormProps> = ({
         setPassword(value)
     }
 
-    const formSubmit = (event: React.FormEvent) => { 
+    const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        login(email, password)
+        if (await login(email, password)){ router.push("/home") }
      }
 
     return (
