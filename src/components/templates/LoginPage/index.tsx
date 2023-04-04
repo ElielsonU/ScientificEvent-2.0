@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { Box } from "@/components/models";
-import { colors, sources } from "@/theme";
+import { colors, sources, fonts } from "@/theme";
 import { LoginForm, SignUpForm } from "@/components/sets";
 
 export default function LoginPage()
@@ -29,13 +29,12 @@ export default function LoginPage()
                 }} 
                 height="100%" 
                 display="flex" 
-                justifyContent="center" 
+                justifyContent="space-evenly" 
                 alignItems="center">
                     {form
                     ?<SignUpForm changeForm={changeForm}/>
                     :<LoginForm changeForm={changeForm}/>
                     }
-                    
                 </Box>
             </Box>
         </>

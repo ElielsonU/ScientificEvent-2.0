@@ -16,7 +16,7 @@ interface StyledBoxProps {
     backgroundColor?: string;
     backgroundImage?: string;
     backgroundSize?: string;
-    BoxSize?: BreakPointsProps;
+    boxSize?: BreakPointsProps;
     display?: DisplayProps;
     flexDirection?: FlexDirectionProps;
     fontSize?: string;
@@ -61,10 +61,10 @@ const Box = styled.div<StyledBoxProps>`
             `
         }
     }}
-    ${({BoxSize}) => {
-        if (BoxSize) {
+    ${({boxSize}) => {
+        if (boxSize) {
             return breakpoints.map((breakpoint) => (
-                 getMediaQuery(BoxSize, breakpoint)
+                 getMediaQuery(boxSize, breakpoint)
             ))
         }
     }}

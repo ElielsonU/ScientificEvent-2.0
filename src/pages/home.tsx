@@ -1,8 +1,7 @@
-const Page = () => {
- return (
-    <>
-    </>
- )
-}
+import HomePage from "@/components/templates/HomePage"
 
-export default Page
+
+export default function Home() {
+   
+   return <HomePage/>
+}
