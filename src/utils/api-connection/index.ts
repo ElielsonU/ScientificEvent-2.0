@@ -18,7 +18,7 @@ const login = async ( email: string, password: string ) => {
 
         setCookie("loggedAs", token)
 
-        return true;
+        return localStorage.getItem(usersToken);
     } catch (e: any) { alert(e.response.data.msg) }
     return false;
 }
@@ -37,9 +37,10 @@ const signup = async ( username: string, email: string, password: string ) => {
         const res = await axios.post("http://localhost:3000/api/signup", data)
 
         setCookie("loggedAs", res.data.token)
+        console.log(email, password)
         localStorage.setItem(usersToken, res.data.msg)
 
-        return true;
+        return localStorage.getItem(usersToken);
     } catch (e: any) { alert(e.response.data.msg) }
     return false;
 }

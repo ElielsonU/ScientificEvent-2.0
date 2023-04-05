@@ -5,6 +5,7 @@ import jtw from "jsonwebtoken";
 const usersKey = process.env.USERS_KEY || ""
 
 const handler:NextApiHandler = ( req, res ) => {
+    
     if (req.method == "POST") {
         const email = req.body.email
         const password = req.body.password
@@ -23,7 +24,7 @@ const handler:NextApiHandler = ( req, res ) => {
         const accountExists = allUsers.array.filter((user: UserProps) => {
             return (email == user.email && password == user.password)
         })[0]
-
+        
         if (!accountExists) {
             return res.status(404).json({msg: `email or password wrong`})
         }

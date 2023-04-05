@@ -4,6 +4,7 @@ import { login } from "@/utils/api-connection";
 import { BlueInput } from "@/components/sets";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { getCookie } from "cookies-next";
 
 interface LoginFormProps { changeForm: React.MouseEventHandler; }
 
@@ -27,8 +28,16 @@ const LoginForm:React.FC<LoginFormProps> = ({
 
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        if (await login(email, password)){ router.push("/home") }
-     }
+        const users = await login(email, password)
+
+        if (users){ router.push({
+                pathname: "/home", query: { 
+                        token: getCookie("loggedAs"),
+                        users
+                    }
+                }, "/home") 
+            }
+        }
 
     return (
         <Form formSize={{

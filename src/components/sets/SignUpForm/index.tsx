@@ -4,6 +4,7 @@ import { BlueInput } from "@/components/sets";
 import { signup } from "@/utils/api-connection";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { getCookie } from "cookies-next";
 
 interface SignUpFormProps { changeForm: React.MouseEventHandler; }
 
@@ -33,8 +34,16 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
 
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        if (await signup(username, email, password)){ router.push("/home") }
-     }
+        const users = await signup(username, email, password)
+
+        if (users){ router.push({
+            pathname: "/home", query: { 
+                        token: getCookie("loggedAs"),
+                        users
+                    }
+                }, "/home")  
+            }
+        }
 
     return <Form formSize={{
         lg: { width: 400, height: 500 },
