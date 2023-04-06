@@ -29,6 +29,7 @@ interface StyledBoxProps {
     linearGradient?: LinearGradientProps;
     outlineColor?: string;
     outlineWidth?: string;
+    padding?: string;
     width?: string;
 }
 
@@ -52,6 +53,7 @@ const Box = styled.div<StyledBoxProps>`
     justify-items: ${props => props.justifyItems};
     outline-color: ${props => props.outlineColor};
     outline-width: ${props => props.outlineWidth};
+    padding: ${props => props.padding};
     width: ${props => props.width};
 
     ${({linearGradient}) => {

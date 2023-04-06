@@ -6,7 +6,7 @@ import { colors, sources, widths } from "@/theme"
 
 import Head from "next/head"
 import { Button, Box } from "@/components/models"
-import { Header } from "@/components/sets"
+import { Footer, Header } from "@/components/sets"
 
 
 const HomePage = () => {
@@ -37,7 +37,13 @@ const HomePage = () => {
             flexDirection="column" 
             height={widths.w1} 
             width={widths.w1}>
-                <Header/>
+                <Header user={user}/>
+                
+                <Box as="main" height={widths.w2} width={widths.w1}>
+
+                </Box>
+
+                <Footer/>
             </Box>
         </>
     )
