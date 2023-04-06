@@ -4,7 +4,6 @@ import { login } from "@/utils/api-connection";
 import { BlueInput } from "@/components/sets";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { getCookie } from "cookies-next";
 
 interface LoginFormProps { changeForm: React.MouseEventHandler; }
 
@@ -28,16 +27,8 @@ const LoginForm:React.FC<LoginFormProps> = ({
 
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        const users = await login(email, password)
-
-        if (users){ router.push({
-                pathname: "/home", query: { 
-                        token: getCookie("loggedAs"),
-                        users
-                    }
-                }, "/home") 
-            }
-        }
+        if (await login(email, password)){ router.push("/home") }
+    }
 
     return (
         <Form formSize={{
@@ -65,11 +56,11 @@ const LoginForm:React.FC<LoginFormProps> = ({
             </BlueInput>
 
             <Box width={widths.w2} display="flex" flexDirection="row-reverse" justifyContent="space-between">
-                <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="10px 20px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2}>
+                <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="9px 18px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2}>
                     Login
                 </Button>
 
-                <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="10px 20px" borderRadius={radius.r3} borderWidth={thickness.t2} onClick={changeForm}>
+                <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="9px 18px" borderRadius={radius.r3} borderWidth={thickness.t2} onClick={changeForm}>
                     Sign Up
                 </Button>
             </Box>

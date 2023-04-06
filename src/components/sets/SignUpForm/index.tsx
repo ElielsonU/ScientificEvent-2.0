@@ -1,10 +1,9 @@
 import { colors, fonts, weights, radius, thickness, widths } from "@/theme";
-import { Form, Box, Button } from "@/components/models";
+import { Form, Box, Button, Input } from "@/components/models";
 import { BlueInput } from "@/components/sets";
 import { signup } from "@/utils/api-connection";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { getCookie } from "cookies-next";
 
 interface SignUpFormProps { changeForm: React.MouseEventHandler; }
 
@@ -15,7 +14,7 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-
+    const [admin, setAdmin] = useState(false)
 
     const emailHandler = (event: React.ChangeEvent) => {
         const value = (event.target as HTMLInputElement).value
@@ -32,18 +31,12 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
         setUsername(value)
     }
 
+    const adminHandler = () => { setAdmin(!admin) }
+
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        const users = await signup(username, email, password)
-
-        if (users){ router.push({
-            pathname: "/home", query: { 
-                        token: getCookie("loggedAs"),
-                        users
-                    }
-                }, "/home")  
-            }
-        }
+        if (await signup(username, email, password, admin)){ router.push("/home") }
+    }
 
     return <Form formSize={{
         lg: { width: 400, height: 500 },
@@ -73,12 +66,17 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
             Password
         </BlueInput>
 
+        <Box as="label" fontSize={fonts.f5} fontWeight={weights.bold} color={colors.c3}>
+            Admin
+            <Input type="checkbox" value={Number(admin)} onChange={adminHandler}/>
+        </Box>
+
         <Box width={widths.w2} display="flex" flexDirection="row-reverse" justifyContent="space-between">
-            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="10px 20px" borderRadius={radius.r3} borderWidth={thickness.t2}>
+            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="9px 18px" borderRadius={radius.r3} borderWidth={thickness.t2}>
                 Sign Up
             </Button>
             
-            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="10px 20px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2} onClick={changeForm}>
+            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="9px 18px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2} onClick={changeForm}>
                 Login
             </Button>
         </Box>

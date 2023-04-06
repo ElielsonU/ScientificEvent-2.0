@@ -32,6 +32,7 @@ type InputProps = {
 interface UserProps {
     username: string;
     password: string;
+    admin: boolean;
     email: string;
     token: string;
 }

@@ -7,7 +7,7 @@ const usersKey = process.env.USERS_KEY || ""
 const handler: NextApiHandler = (req, res) => {
     if (req.method == "POST") {
         const users = req.body.users
-        const token = req.body.loggedAs
+        const token = req.cookies.loggedAs
         
         if (!users) {
             return res.status(404).json({msg: `there's no users signed`})
@@ -34,8 +34,11 @@ const handler: NextApiHandler = (req, res) => {
         }
 
         return res.status(202).json({
-            username: user.username,
-            email: user.email
+            user: {
+                username: user.username,
+                email: user.email,
+                admin: user.admin,
+            }
         })
     } 
 

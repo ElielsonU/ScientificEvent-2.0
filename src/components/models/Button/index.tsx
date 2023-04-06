@@ -22,6 +22,7 @@ const Button = styled.button<StyledButtonProps>`
     border-width: ${props => props.borderWidth};
     border-color: ${props => props.borderColor};
     color: ${props => props.color};
+    cursor: pointer;
     font-size: ${props => props.fontSize};
     font-weight: ${props => props.fontWeight};
     padding: ${props => props.padding};

@@ -9,11 +9,12 @@ const handler:NextApiHandler = ( req, res ) => {
     if (req.method == "POST") {
         const username = req.body.username
         const password = req.body.password
+        const admin = req.body.admin
         const email = req.body.email
         const users = req.body.users
 
-        if (!username || !password || !email) {
-            return res.status(404).json({msg: `there's no users signed`})
+        if (!username || !password || !email || typeof admin != "boolean") {
+            return res.status(404).json({msg: `missing params`})
         }
 
         let allUsers: any;
@@ -31,14 +32,14 @@ const handler:NextApiHandler = ( req, res ) => {
             } 
             catch (e) {
                 return res.status(422).json({msg: `unrecognized token`})
-
             }
         } else { allUsers = {array: []} }
 
         allUsers.array.push({
-            token,
             username,
             password,
+            admin,
+            token,
             email,
         })
 
