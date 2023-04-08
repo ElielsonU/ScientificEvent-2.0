@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { InputProps } from "@/theme/types";
+import { weights } from "@/theme";
 
 const Input = styled.input<InputProps>`
     color: ${props => props.color};
@@ -11,7 +12,13 @@ const Input = styled.input<InputProps>`
     font-size: ${props => props.fontSize};
     font-weight: ${props => props.fontWeight};
     padding: ${props => props.padding};
+    text-align: ${props => props.textAlign};
     width: ${props => props.width};
+
+    &::placeholder { 
+        color: ${props => props.color};
+        font-weight: ${weights.bold};
+    }
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover, 

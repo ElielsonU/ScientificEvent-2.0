@@ -16,14 +16,20 @@ interface StyledBoxProps {
     backgroundColor?: string;
     backgroundImage?: string;
     backgroundSize?: string;
+    borderRadius?: string;
+    borderColor?: string;
+    borderWidth?: string;
     boxSize?: BreakPointsProps;
     display?: DisplayProps;
     flexDirection?: FlexDirectionProps;
+    flexGrow?: string;
     fontSize?: string;
     fontWeight?: string;
+    gap?: string;
     gridTemplateColumns?: string;
     gridTemplateRows?: string;
-    height? : string;
+    height?: string;
+    hideOverflow?: boolean;
     justifyContent?: ContentProps | "space-evenly"; 
     justifyItems?: ItemsProps;
     linearGradient?: LinearGradientProps;
@@ -40,12 +46,17 @@ const Box = styled.div<StyledBoxProps>`
     background-image: url(${props => props.backgroundImage});
     background-repeat: no-repeat;
     background-size: ${props => props.backgroundSize};
+    border-radius: ${props => props.borderRadius};
+    border-color: ${props => props.borderColor};
+    border-width: ${props => props.borderWidth};
     color: ${props => props.color};
     display: ${props => props.display};
-    flex-wrap: wrap;
     flex-direction: ${props => props.flexDirection};
+    flex-grow: ${props => props.flexGrow};
+    flex-wrap: wrap;
     font-size: ${props => props.fontSize};
     font-weight: ${props => props.fontWeight};
+    gap: ${props => props.gap};
     grid-template-columns: ${props => props.gridTemplateColumns};
     grid-template-rows: ${props => props.gridTemplateRows};
     height: ${props => props.height};
@@ -53,6 +64,7 @@ const Box = styled.div<StyledBoxProps>`
     justify-items: ${props => props.justifyItems};
     outline-color: ${props => props.outlineColor};
     outline-width: ${props => props.outlineWidth};
+    overflow: ${props => props.hideOverflow?"hidden":null};
     padding: ${props => props.padding};
     width: ${props => props.width};
 

@@ -2,14 +2,14 @@ import { NextApiHandler } from "next";
 import jtw from "jsonwebtoken";
 import { UserProps } from "@/theme/types";
 
-const usersKey = process.env.USERS_KEY || ""
+const databaseKey = process.env.DATABASE_KEY || ""
 
 const handler: NextApiHandler = (req, res) => {
     if (req.method == "POST") {
-        const users = req.body.users
+        const database = req.body.database
         const token = req.cookies.loggedAs
         
-        if (!users) {
+        if (!database) {
             return res.status(404).json({msg: `there's no users signed`})
         }
 
@@ -17,15 +17,15 @@ const handler: NextApiHandler = (req, res) => {
             return res.status(404).json({msg: `user not signed`})
         }
 
-        let allUsers: any;
+        let databaseObj: any;
 
         try {
-            allUsers = jtw.verify(users, usersKey)
+            databaseObj = jtw.verify(database, databaseKey)
         } catch (e: any) {
-            return res.status(422).json({msg: `invalid user`})
+            return res.status(422).json({msg: `unrecognized token`})
         }
 
-        const user = allUsers.array.filter((user: UserProps) => {
+        const user = databaseObj.users.filter((user: UserProps) => {
             return (user.token == token)
         })[0]
 

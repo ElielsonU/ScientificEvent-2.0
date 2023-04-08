@@ -6,7 +6,7 @@ import { colors, sources, widths } from "@/theme"
 
 import Head from "next/head"
 import { Button, Box } from "@/components/models"
-import { Footer, Header } from "@/components/sets"
+import { Footer, Header, ArticlesSubmitForm } from "@/components/sets"
 
 
 const HomePage = () => {
@@ -33,13 +33,23 @@ const HomePage = () => {
             alignItems="center"
             backgroundSize="cover"
             backgroundImage={sources.homeBackground} 
+            borderColor={colors.c4}
+            borderWidth="10px"
             display="flex" 
-            flexDirection="column" 
-            height={widths.w1} 
+            flexDirection="column"
+            id="auto-page-height"  
+            height={widths.w1}
             width={widths.w1}>
                 <Header user={user}/>
                 
-                <Box as="main" height={widths.w2} width={widths.w1}>
+                <Box 
+                as="main" 
+                display="flex"
+                flexGrow="1"  
+                alignItems="center"
+                justifyContent="space-around"
+                width={widths.w1}>
+                    <ArticlesSubmitForm email={user.email}/>
 
                 </Box>
 

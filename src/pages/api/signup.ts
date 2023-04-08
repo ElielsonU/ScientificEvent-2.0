@@ -3,7 +3,7 @@ import type { UserProps } from '@/theme/types';
 import { randomUUID } from 'crypto';
 import jtw from "jsonwebtoken";
 
-const usersKey = process.env.USERS_KEY || ""
+const databaseKey = process.env.DATABASE_KEY || ""
 
 const handler:NextApiHandler = ( req, res ) => {
     if (req.method == "POST") {
@@ -11,19 +11,20 @@ const handler:NextApiHandler = ( req, res ) => {
         const password = req.body.password
         const admin = req.body.admin
         const email = req.body.email
-        const users = req.body.users
+        const database = req.body.database
 
         if (!username || !password || !email || typeof admin != "boolean") {
             return res.status(404).json({msg: `missing params`})
         }
 
-        let allUsers: any;
+        let databaseObj: any;
         const token = randomUUID()
 
-        if (users) {
+        if (database) {
             try { 
-                allUsers = jtw.verify(users, usersKey) 
-                const emailAlredyExists = allUsers.array.filter((user: UserProps) => {
+                databaseObj = jtw.verify(database, databaseKey) 
+                
+                const emailAlredyExists = databaseObj.users.filter((user: UserProps) => {
                     return (email == user.email)
                 })[0]
                 if (emailAlredyExists) {
@@ -33,9 +34,9 @@ const handler:NextApiHandler = ( req, res ) => {
             catch (e) {
                 return res.status(422).json({msg: `unrecognized token`})
             }
-        } else { allUsers = {array: []} }
+        } else { databaseObj = {users: [], articles: []} }
 
-        allUsers.array.push({
+        databaseObj.users.push({
             username,
             password,
             admin,
@@ -43,7 +44,7 @@ const handler:NextApiHandler = ( req, res ) => {
             email,
         })
 
-        const msg = jtw.sign(allUsers, usersKey)
+        const msg = jtw.sign(databaseObj, databaseKey)
 
         return res.status(200).json({msg, token})
     }

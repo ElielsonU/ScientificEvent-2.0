@@ -1,16 +1,17 @@
 import { createGlobalStyle } from "styled-components";
-import { colors } from "@/theme";
+import { colors, radius } from "@/theme";
 
 const GlobalStyle = createGlobalStyle`
+
     * {
+        border: 0 solid;
         box-sizing: border-box;
         color: inherit;
         font-size: inherit;
         font-family: inherit;
-        padding: 0;
         margin: 0;
-        border: 0 solid;
         outline: 0 solid;
+        padding: 0;
     }
 
     html { font-size: 12px; }
@@ -18,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
     body, html, #__next {
         color: ${ colors.c1 };
         height: 100%;
-        overflow: hidden;
     }
     
     #__next { background-color: ${colors.c2}; }
@@ -28,6 +28,24 @@ const GlobalStyle = createGlobalStyle`
     input:hover { outline: none; }
 
     input:focus { outline: none; }
+
+    textarea { resize: none; }
+
+    textarea::placeholder { color: inherit; }
+
+    ::-webkit-scrollbar { width: 10px; }
+
+    ::-webkit-scrollbar-track { background: ${colors.transparent}; }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: ${radius.r6};
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        cursor: alias !important;
+    }
 
     a {
         color: inherit;
@@ -40,6 +58,10 @@ const GlobalStyle = createGlobalStyle`
     
     @media (max-width: 500px) {
         html { font-size: 10px; }
+    }
+
+    @media (max-height: 620px) {
+        #auto-page-height { height: auto; }
     }
 
 `

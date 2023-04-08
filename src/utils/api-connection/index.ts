@@ -1,17 +1,15 @@
 import axios from "axios"
 import { deleteCookie, setCookie } from "cookies-next"
-import { redirect } from "next/dist/server/api-utils"
 import { NextRouter } from "next/router"
-const usersToken = "247fb30c-2143-4fb6-96bf-d32680886d11"
-const articlesToken = "542e066e-fec1-46ab-a55c-9e34ba41ed33"
+const databaseToken = "247fb30c-2143-4fb6-96bf-d32680886d11"
 
 const login = async ( email: string, password: string ) => {    
-    const users = localStorage.getItem(usersToken)
+    const database = localStorage.getItem(databaseToken)
 
     const data = {
         email, 
         password, 
-        users
+        database
     }
 
     try {
@@ -26,31 +24,31 @@ const login = async ( email: string, password: string ) => {
 }
 
 const signup = async ( username: string, email: string, password: string, admin: boolean ) => {
-    const users = localStorage.getItem(usersToken)
+    const database = localStorage.getItem(databaseToken)
 
     const data = {
         username,
         password, 
         admin,
         email, 
-        users
+        database
     }
 
     try {
         const res = await axios.post("http://localhost:3000/api/signup", data)
 
         setCookie("loggedAs", res.data.token)
-        localStorage.setItem(usersToken, res.data.msg)
+        localStorage.setItem(databaseToken, res.data.msg)
 
         return true;
     } catch (e: any) { alert(e.response.data.msg) }
     return false;
 }
 
-const getuser = async (router: NextRouter) => {
-    const users = localStorage.getItem(usersToken)
+const getuser = async ( router: NextRouter ) => {
+    const database = localStorage.getItem(databaseToken)
 
-    const data = { users }
+    const data = { database }
 
     try {
         const res = await axios.post("http://localhost:3000/api/getuser", data)
@@ -63,7 +61,30 @@ const getuser = async (router: NextRouter) => {
         deleteCookie("loggedAs")
         router.replace("/")
     }
-
 }
 
-export { login, signup, getuser }
+const postarticle = async ( title: string, content: string, email: string, router: NextRouter) => {
+    const database = localStorage.getItem(databaseToken)
+
+    const data = {
+        content, 
+        email,
+        database,
+        title, 
+    }
+
+    try {
+        const res = await axios.post("http://localhost:3000/api/postarticle", data) 
+        console.log(res.data)
+        localStorage.setItem(databaseToken, res.data.msg)
+
+    } catch (e: any) { 
+        alert(e.response.data.msg)
+        if (e.response.status == 401) {
+            deleteCookie("loggedAs")
+            router.replace("/")
+        }
+    }
+}
+
+export { login, signup, getuser, postarticle }

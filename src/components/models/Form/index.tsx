@@ -19,10 +19,12 @@ interface StyledFormProps {
     alignItems?: ItemsProps;
     backgorundColor?: string;
     borderRadius?: string;
+    borderWidth?: string;
+    borderColor?: string;
     flexDirection?: FlexDirectionProps;
     formSize?: BreakPointsProps;
     justifyContent?: ContentProps | "space-evenly";
-    heigth?: string;
+    height?: string;
     outlineColor?: string;
     outlineWidth?: string;
     width?: string;
@@ -31,12 +33,14 @@ interface StyledFormProps {
 const Form = styled.form<StyledFormProps>`
     align-items: ${props => props.alignItems};
     background-color: ${props => props.backgorundColor};
+    border-color: ${props => props.borderColor};
     border-radius: ${props => props.borderRadius};
+    border-width: ${props => props.borderWidth};
     display: flex;
     flex-wrap: wrap;
     justify-content: ${props => props.justifyContent};
     flex-direction: ${props => props.flexDirection};
-    height: ${props => props.heigth};
+    height: ${props => props.height};
     outline-color: ${props => props.outlineColor};
     outline-width: ${props => props.outlineWidth};
     transition: all 50ms ease-in;

@@ -26,6 +26,7 @@ type InputProps = {
     fontWeight?: string;
     height?: string;
     padding?: string;
+    textAlign?: "right" | "center" | "left";
     width?: string;
 }
 
