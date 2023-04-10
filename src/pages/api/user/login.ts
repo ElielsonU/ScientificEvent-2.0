@@ -2,7 +2,7 @@ import type { NextApiHandler } from 'next';
 import type { UserProps } from '@/theme/types';
 import jtw from "jsonwebtoken";
 
-const databaseKey = process.env.DATABASE_KEY || ""
+const databaseKey = String(process.env.DATABASE_KEY)
 
 const handler:NextApiHandler = ( req, res ) => {
     

@@ -2,13 +2,15 @@ import { NextApiHandler } from "next";
 import jtw from "jsonwebtoken";
 import { UserProps } from "@/theme/types";
 
-const databaseKey = process.env.DATABASE_KEY || ""
+const databaseKey = String(process.env.DATABASE_KEY)
 
 const handler: NextApiHandler = (req, res) => {
-    if (req.method == "POST") {
-        const database = req.body.database
-        const token = req.cookies.loggedAs
+
+    if (req.method == "GET") {
         
+        const database = String(req.query.database)
+        const token = req.cookies.loggedAs
+
         if (!database) {
             return res.status(404).json({msg: `there's no users signed`})
         }

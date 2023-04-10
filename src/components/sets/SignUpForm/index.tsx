@@ -62,7 +62,7 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
             Email
         </BlueInput>
 
-        <BlueInput onChange={passwordHandler} value={password} name="password" type="password">
+        <BlueInput onChange={passwordHandler} value={password} name="password" type="password" minLength={8}>
             Password
         </BlueInput>
 

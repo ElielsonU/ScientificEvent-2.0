@@ -53,14 +53,14 @@ const GlobalStyle = createGlobalStyle`
     }
     
     @media (min-width: 1336px) {
-        html {font-size: 13px; }
+        html {font-size: 12px; }
     }
     
-    @media (max-width: 500px) {
+    @media (max-width: 525px) {
         html { font-size: 10px; }
     }
 
-    @media (max-height: 620px) {
+    @media (max-height: 560px) {
         #auto-page-height { height: auto; }
     }
 

@@ -26,16 +26,19 @@ interface StyledBoxProps {
     fontSize?: string;
     fontWeight?: string;
     gap?: string;
+    gridColumn?: string;
+    gridRow?: string;
     gridTemplateColumns?: string;
     gridTemplateRows?: string;
     height?: string;
-    hideOverflow?: boolean;
+    overflow?: string;
     justifyContent?: ContentProps | "space-evenly"; 
     justifyItems?: ItemsProps;
     linearGradient?: LinearGradientProps;
     outlineColor?: string;
     outlineWidth?: string;
     padding?: string;
+    textAlign?: string;
     width?: string;
 }
 
@@ -57,6 +60,8 @@ const Box = styled.div<StyledBoxProps>`
     font-size: ${props => props.fontSize};
     font-weight: ${props => props.fontWeight};
     gap: ${props => props.gap};
+    grid-column: ${props => props.gridColumn};
+    grid-row: ${props => props.gridRow};
     grid-template-columns: ${props => props.gridTemplateColumns};
     grid-template-rows: ${props => props.gridTemplateRows};
     height: ${props => props.height};
@@ -64,8 +69,9 @@ const Box = styled.div<StyledBoxProps>`
     justify-items: ${props => props.justifyItems};
     outline-color: ${props => props.outlineColor};
     outline-width: ${props => props.outlineWidth};
-    overflow: ${props => props.hideOverflow?"hidden":null};
+    overflow: ${props => props.overflow};
     padding: ${props => props.padding};
+    text-align: ${props => props.textAlign};
     width: ${props => props.width};
 
     ${({linearGradient}) => {

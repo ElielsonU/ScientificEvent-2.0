@@ -5,6 +5,7 @@ import UserIcon from "../UserIcon"
 import Link from "next/link"
 import style from "@/styles/global.module.css"
 import React from "react"
+import { useRouter } from "next/router"
 
 interface HeaderProps {
     user: {
@@ -16,8 +17,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ user }) => {
 
+    const router = useRouter()
+
     const disconnect = () => {
         deleteCookie("loggedAs")
+        router.push("/")
     }
 
     return (

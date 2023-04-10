@@ -32,12 +32,8 @@ const ArticlesSubmitForm:React.FC<ArticlesSubmitFormProps> = ({ email }) => {
 } flexDirection="column" 
         alignItems="center" 
         justifyContent="center"
-        formSize={{
-            lg: { width: 450, height: 500 },
-            md: { width: 370, height: 490 },
-            sm: { width: 350, height: 470 },
-            xs: { width: 320, height: 450 },
-        }} >
+        width={widths.w2}
+        height={widths.w2}>
             <Box as="h1" color={colors.c2} fontSize={fonts.f2} 
             >Submit Article</Box>
 
@@ -59,7 +55,7 @@ const ArticlesSubmitForm:React.FC<ArticlesSubmitFormProps> = ({ email }) => {
                 padding: "3px 15px",
                 width: widths.w2
             }}/>
-            <Box height="50px" backgroundColor={colors.c4} borderRadius="0px 0px 5px 5px" width={widths.w2} display="flex" flexDirection="row-reverse" hideOverflow> 
+            <Box height="50px" backgroundColor={colors.c4} borderRadius="0px 0px 5px 5px" width={widths.w2} display="flex" flexDirection="row-reverse" overflow="hidden"> 
                 <Button 
                 backgroundColor={colors.c4}
                 color={colors.c1}
