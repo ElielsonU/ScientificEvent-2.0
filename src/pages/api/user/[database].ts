@@ -10,7 +10,7 @@ const handler: NextApiHandler = (req, res) => {
         
         const database = String(req.query.database)
         const token = req.cookies.loggedAs
-
+        
         if (!database) {
             return res.status(404).json({msg: `there's no users signed`})
         }

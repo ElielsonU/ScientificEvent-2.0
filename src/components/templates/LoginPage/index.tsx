@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { Box } from "@/components/models";
-import { colors, sources, fonts } from "@/theme";
+import { colors, sources } from "@/theme";
 import { LoginForm, SignUpForm } from "@/components/sets";
 
 export default function LoginPage()

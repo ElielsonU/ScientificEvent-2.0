@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
             <Box height="50px" display="flex" flexDirection="column" justifyContent="center" gap="4px">
                 <UserIcon/>
                 <Box as="p" fontSize="20px" fontWeight={weights.bold}>{user.username}</Box>
-                <Link href="/" onClick={disconnect} className={style.underline}>Desconectar</Link>
+                <a onClick={disconnect} className={style.underline}>Desconectar</a>
             </Box>
             <Box as="span" fontSize={fonts.f5} fontWeight={weights.bold}>
                 Scientific Event
