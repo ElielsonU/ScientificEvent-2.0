@@ -60,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
         html { font-size: 10px; }
     }
 
-    @media (max-height: 600px) {
+    @media (max-height: 620px) {
         #auto-page-height { height: auto; }
     }
 

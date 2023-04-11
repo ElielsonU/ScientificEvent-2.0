@@ -47,20 +47,22 @@ const ArticlesViewer: React.FC = () => {
 
     return (
         <Box 
-        width={widths.w1} 
-        height={widths.w1} 
-        display="flex" 
-        color={colors.c2}
-        flexDirection="column"
         alignItems="center"
+        color={colors.c2}
+        display="flex" 
+        flexDirection="column"
+        justifyContent="center"
         gap="20px"
-        justifyContent="center">
+        height={widths.w1} 
+        width={widths.w1}>
             <Box display="flex" width={widths.w1} alignItems="flex-start" justifyContent="space-between">
                 <Box as="span" fontSize={fonts.f7} color={colors.c2}>users signed: {users}</Box>
                 <Box as="span" fontSize={fonts.f7}>articles submited: {articles.length}</Box>
             </Box>
 
             <Box flexGrow="1" width={widths.w3} display="flex" justifyContent="space-around" alignItems="center">
+                
+            <Box display="flex" width={widths.w2} alignItems="center" justifyContent="space-between">
                 <Button 
                 fontSize={fonts.f2} 
                 fontWeight={weights.bold}
@@ -78,13 +80,14 @@ const ArticlesViewer: React.FC = () => {
                 onClick={nextArticle}>
                     {">"}
                 </Button>
+            </Box>
 
                 <Box borderRadius={radius.r6} borderWidth="5px" borderColor={colors.c1} boxSize= {{
-                    lg: { width: 800, height: 400 },
+                    lg: { width: 900, height: 400 },
                     md: { width: 700, height: 500 },
                     sm: { width: 800, height: 400 },
-                    xs: { width: 400, height: 400 },
-                }} overflow="auto" fontSize={fonts.f5} backgroundColor={colors.c1} padding="3px 5px" color={colors.c3}>  
+                    xs: { width: 400, height: 420 },
+                }} height="80%" overflow="auto" fontSize={fonts.f5} backgroundColor={colors.c1} padding="3px 5px" color={colors.c3}>  
                     {articles[reading]?.content}
                 </Box>
             </Box>

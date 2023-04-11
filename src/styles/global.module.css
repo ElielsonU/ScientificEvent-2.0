@@ -1,1 +1,4 @@
-.underline { text-decoration: underline; }
+.underline { 
+    cursor: pointer;
+    text-decoration: underline;
+}
