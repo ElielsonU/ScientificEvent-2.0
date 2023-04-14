@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
 
     const disconnect = () => {
         deleteCookie("loggedAs")
+        deleteCookie("admin")
         router.push("/")
     }
 
@@ -39,9 +40,14 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
                 <Box as="p" fontSize="20px" fontWeight={weights.bold}>{user.username}</Box>
                 <a onClick={disconnect} className={style.underline}>Desconectar</a>
             </Box>
-            <Box as="span" fontSize={fonts.f5} fontWeight={weights.bold}>
-                Scientific Event
-            </Box>
+            {user.admin
+            ?<Link href="/" className={style.underline} style={{
+                fontSize: fonts.f5,
+                fontWeight: weights.bold
+            }}>View Articles</Link>
+            :<Box as="span" fontSize={fonts.f5} fontWeight={weights.bold}>
+            Scientific Event
+            </Box>}
         </Box>
     )
 }

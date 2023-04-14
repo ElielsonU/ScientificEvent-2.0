@@ -35,7 +35,7 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
 
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        if (await signup(username, email, password, admin)){ router.push("/home") }
+        signup(username, email, password, admin, router)
     }
 
     return <Form formSize={{

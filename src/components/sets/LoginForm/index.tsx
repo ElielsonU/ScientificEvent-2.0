@@ -27,7 +27,7 @@ const LoginForm:React.FC<LoginFormProps> = ({
 
     const formSubmit = async (event: React.FormEvent) => { 
         event.preventDefault()
-        if (await login(email, password)){ router.push("/home") }
+        await login(email, password, router)
     }
 
     return (

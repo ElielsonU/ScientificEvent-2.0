@@ -1,13 +1,12 @@
-import { getuser } from "@/utils/api-connection"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 
 import { colors, sources, widths } from "@/theme"
 
 import Head from "next/head"
-import { Button, Box } from "@/components/models"
-import { Footer, Header, ArticlesSubmitForm, ArticlesViewer } from "@/components/sets"
-import Image from "next/image"
+import { Box } from "@/components/models"
+import { Footer, Header, ArticlesSubmitForm } from "@/components/sets"
+import { getCookie } from "cookies-next"
 
 const HomePage = () => {
     const [user, setUser] = useState({
@@ -15,13 +14,15 @@ const HomePage = () => {
         email: "",
         admin: false,
     })
-    const [verified, setVerified] = useState(false)
     
-    const router = useRouter()
     useEffect(() => {
         (async function getActualUser() { 
-            setUser(await getuser(router)) 
-            setVerified(true)
+            const pUser = {
+                ...JSON.parse(String(localStorage.getItem("user"))),
+                admin: Number(getCookie("admin"))
+            }
+
+            setUser(pUser)
         })()
     }, [])
 
@@ -54,12 +55,7 @@ const HomePage = () => {
                 alignItems="center"
                 justifyContent="space-around"
                 width={widths.w1}>
-                    {verified
-                    ?user.admin
-                        ?<ArticlesViewer/>
-                        :<ArticlesSubmitForm email={user.email}/>
-                    :<Image src={sources.loader} width={400} height={270} alt="loader"/>
-                    }
+                    <ArticlesSubmitForm email={user.email}/>
                 </Box>
 
                 <Footer/>
