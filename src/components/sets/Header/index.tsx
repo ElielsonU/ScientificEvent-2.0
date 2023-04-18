@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
                 <a onClick={disconnect} className={style.underline}>Desconectar</a>
             </Box>
             {user.admin
-            ?<Link href="/" className={style.underline} style={{
+            ?<Link href="/articles" className={style.underline} style={{
                 fontSize: fonts.f5,
                 fontWeight: weights.bold
             }}>View Articles</Link>

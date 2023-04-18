@@ -1,5 +1,6 @@
 import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
+import ArticlePage from "@/components/templates/ArticlePage";
 
 export const getStaticPaths: GetStaticPaths = () => {
     return {
@@ -10,10 +11,12 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = (context) => {
     return {
-        props: {} 
+        props: {
+
+        } 
     }
 }
 
 export default function Article () {
-    return <></>
+    return <ArticlePage/>
 }

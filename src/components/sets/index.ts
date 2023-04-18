@@ -1,5 +1,5 @@
 import ArticlesSubmitForm from "./ArticlesSubmitForm";
-import ArticlesViewer from "./ArticlesViewer";
+import ArticlesViewer from "./Articles";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import BlueInput from "./BlueInputs";
