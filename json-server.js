@@ -1,6 +1,6 @@
 const JsonServer = require("json-server")
-const db = require("./db.json")
 const crypto = require("crypto")
+const fs = require("fs")
 
 const server = JsonServer.create()
 const router = JsonServer.router("./db.json")
@@ -23,6 +23,8 @@ const parseCookies = (cookies) => {
 }
 
 server.post("/users", (req, res, next ) => {
+    const db = JSON.parse(fs.readFileSync("./db.json"))
+
     req.body.token = crypto.randomUUID()
     const email = req.body.email
     
@@ -39,8 +41,9 @@ server.post("/users", (req, res, next ) => {
         return res.status(400).json({msg: "missing params (username, email, password, admin)"})
     }
 
-    req.body.admin = Number(req.body.admin)
+    req.body.email = req.body.email
 
+    req.body.admin = Number(req.body.admin)
     return next()
 
 })
@@ -56,7 +59,8 @@ server.get("/users", (req, res, next) => {
 })
 
 server.post("/aut/login", (req, res) => {
-    
+    const db = JSON.parse(fs.readFileSync("./db.json"))
+
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({msg: "missing params (email, password)"})
     }

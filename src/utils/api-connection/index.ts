@@ -14,8 +14,6 @@ const login = async ( email: string, password: string, router: NextRouter ) => {
         const res = await axios.post("http://localhost:8000/aut/login", data)
         const user = res.data
 
-        console.log(user)
-
         setCookie("loggedAs", user.token)
         setCookie("admin", user.admin)
 

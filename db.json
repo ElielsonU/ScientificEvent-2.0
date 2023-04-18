@@ -1,6 +1,13 @@
 {
   "articles": [],
   "users": [
-    
+    {
+      "admin": 0,
+      "email": "elielson7756@gmail.com",
+      "username": "Elielson",
+      "password": "1234h1n1",
+      "token": "c9f1fdef-f491-4117-a4f6-77dc0e3531ff",
+      "id": 1
+    }
   ]
 }

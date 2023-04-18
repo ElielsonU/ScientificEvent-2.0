@@ -72,11 +72,11 @@ const SignUpForm:React.FC<SignUpFormProps> = ({
         </Box>
 
         <Box width={widths.w2} display="flex" flexDirection="row-reverse" justifyContent="space-between">
-            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="9px 18px" borderRadius={radius.r3} borderWidth={thickness.t2}>
+            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c4} backgroundColor={colors.c2} padding="9px 17px" borderRadius={radius.r3} borderWidth={thickness.t2}>
                 Sign Up
             </Button>
             
-            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="9px 18px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2} onClick={changeForm}>
+            <Button fontSize={fonts.f2} fontWeight={weights.bold} color={colors.c2} backgroundColor={colors.c4} padding="9px 17px" borderRadius={radius.r3} borderColor={colors.c4} borderWidth={thickness.t2} onClick={changeForm}>
                 Login
             </Button>
         </Box>
