@@ -60,13 +60,13 @@ const signup = async (
     
 }
 
-const postarticle = async ( title: string, content: string, email: string, router: NextRouter) => {
-    const database = localStorage.getItem(databaseToken)
+const postarticle = async ( title: string, content: string, email: string) => {
+    const user_id = JSON.parse(String(localStorage.getItem("user"))).id
 
     const data = {
         content, 
+        user_id,
         email,
-        database,
         title, 
     }
 
@@ -80,17 +80,16 @@ const postarticle = async ( title: string, content: string, email: string, route
     }
 }
 
-const getarticle = async () => {
-    const database = localStorage.getItem(databaseToken)
-
-    try {
-        const res = await axios.get(`http://localhost:3000/api/article/${database}`)
-        return res.data.articles
-    } catch (e: any) {
-        alert(e.response.data.msg)
-        localStorage.removeItem(databaseToken)
-        deleteCookie("loggedAs")
-    }   
+const getarticle = async (id: number | undefined) => {
+    if (id) {
+        try {
+            const res = await axios.get(`http://localhost:8000/articles?_start=${id-1}&_end=${id}`)
+            
+            return res.data[0]
+        } catch (e: any) {
+            alert(e.response.data.msg)
+        }   
+    } 
 }
 
 const getarticlespage = async (page: number) => {
@@ -102,5 +101,13 @@ const getarticlespage = async (page: number) => {
     }
 }
 
+const getarticleslength = async () => {
+    try {
+        const res = await axios.get("http://localhost:8000/articles/lenght")
+        return Number(res.data.msg)
+    } catch (e: any) {
+        alert(e.response.data.msg)
+    }
+}
 
-export { login, signup, postarticle, getarticle, getarticlespage }
+export { login, signup, postarticle, getarticle, getarticlespage, getarticleslength }

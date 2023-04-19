@@ -1,24 +1,49 @@
 import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import ArticlePage from "@/components/templates/ArticlePage";
+import { getarticleslength, getarticle } from "@/utils/api-connection";
 
-export const getStaticPaths: GetStaticPaths = () => {
-    
+
+export const getStaticPaths: GetStaticPaths = async () => {
+
+    let lenght = await getarticleslength()
+    const paths = []
+
+    while (lenght) {
+        paths.push({
+            params: {
+                id: lenght.toString()
+            }
+        })
+        --lenght
+    }
 
     return {
-        paths: [],
-        fallback: true,
+        paths,
+        fallback: "blocking",
     }
 }
 
-export const getStaticProps: GetStaticProps = (context) => {
-    return {
-        props: {
+export const getStaticProps: GetStaticProps = async (context) => {
+    const article = await getarticle(Number(context.params?.id))
 
-        } 
+    console.log(article)
+
+    return {
+        props: { article } 
     }
 }
 
-export default function Article () {
+interface ArticleProps {
+    article: {
+        title: string,
+        content: string,
+        user_id: number,
+        id: number,
+    }
+}
+
+export default function Article (props: ArticleProps) {
+
     return <ArticlePage/>
 }

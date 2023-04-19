@@ -1,76 +1,10 @@
 {
   "articles": [
     {
-      "content": "lorem ipsum",
-      "database": null,
-      "title": "Something",
+      "content": "a",
+      "user_id": 1,
+      "title": "a",
       "id": 1
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 2
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 3
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 4
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 5
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 6
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 7
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 8
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 9
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 10
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 11
-    },
-    {
-      "content": "a",
-      "database": null,
-      "title": "a",
-      "id": 12
     }
   ],
   "users": [

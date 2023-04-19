@@ -11,7 +11,7 @@ server.use(middleware)
 server.use(JsonServer.bodyParser)
 
 const parseCookies = (cookies) => {
-    const cookieList = {}
+    const cookieList = []
 
     for (let x of cookies.split(";")) {
         const cookie = x.split("=")
@@ -56,6 +56,13 @@ server.get("/users", (req, res, next) => {
     }
 
     return res.status(200).json({msg: "you're not an admin"})
+})
+
+server.get("/articles/lenght", (req, res) => {
+    const db = JSON.parse(fs.readFileSync("./db.json"))
+    const msg = db.articles.length >= 10 ? 10 : db.articles.lenght
+
+    return res.status(200).json({msg})
 })
 
 server.post("/aut/login", (req, res) => {
