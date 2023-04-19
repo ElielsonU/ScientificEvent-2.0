@@ -80,7 +80,7 @@ const postarticle = async ( title: string, content: string, email: string, route
     }
 }
 
-const getarticle = async (router: NextRouter) => {
+const getarticle = async () => {
     const database = localStorage.getItem(databaseToken)
 
     try {
@@ -90,22 +90,17 @@ const getarticle = async (router: NextRouter) => {
         alert(e.response.data.msg)
         localStorage.removeItem(databaseToken)
         deleteCookie("loggedAs")
-        router.replace("/")
     }   
 }
 
-const getusers = async (router: NextRouter) => {
-    const database = localStorage.getItem(databaseToken)
-
+const getarticlespage = async (page: number) => {
     try {
-        const res = await axios.get(`http://localhost:3000/api/user/?database=${database}`)
-        return res.data.users
+        const res = await axios.get(`http://localhost:8000/articles/?_page=${page}`)
+        return res.data
     } catch (e: any) {
         alert(e.response.data.msg)
-        localStorage.removeItem(databaseToken)
-        deleteCookie("loggedAs")
-        router.replace("/")
-    }   
+    }
 }
 
-export { login, signup, postarticle, getarticle, getusers }
+
+export { login, signup, postarticle, getarticle, getarticlespage }

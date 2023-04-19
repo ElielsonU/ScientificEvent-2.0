@@ -1,12 +1,85 @@
 {
-  "articles": [],
+  "articles": [
+    {
+      "content": "lorem ipsum",
+      "database": null,
+      "title": "Something",
+      "id": 1
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 2
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 3
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 4
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 5
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 6
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 7
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 8
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 9
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 10
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 11
+    },
+    {
+      "content": "a",
+      "database": null,
+      "title": "a",
+      "id": 12
+    }
+  ],
   "users": [
     {
-      "admin": 0,
+      "admin": 1,
       "email": "elielson7756@gmail.com",
       "username": "Elielson",
       "password": "1234h1n1",
-      "token": "c9f1fdef-f491-4117-a4f6-77dc0e3531ff",
+      "token": "d7e21349-3346-4c4b-8613-e958a33b0812",
       "id": 1
     }
   ]

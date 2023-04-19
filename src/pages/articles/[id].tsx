@@ -3,6 +3,8 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import ArticlePage from "@/components/templates/ArticlePage";
 
 export const getStaticPaths: GetStaticPaths = () => {
+    
+
     return {
         paths: [],
         fallback: true,
