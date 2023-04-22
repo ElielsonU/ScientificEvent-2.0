@@ -26,10 +26,29 @@ const ArticlesViewer: React.FC = () => {
     }, [page])
 
     const goToNextPage = () => {
-        if(nextPage) { setPage(page + 1) }
+        if(nextPage) { 
+            setViewing(-1)
+            setPage(page + 1) 
+        }
+    }
+
+    const goToPreviousPage = () => {
+        if(page>1) { 
+            setViewing(-1)
+            setPage(page - 1)
+        }
     }
 
     // (index+1)+((page-1)*10)
+
+    const radioDoubleClickHandler = (index: number) => {
+
+    }
+
+    const radioClickHandler = (event: React.MouseEvent) => {
+        const value = Number((event.target as HTMLInputElement).value)
+        setViewing(value)
+    }
 
     return (
         <Box 
@@ -41,15 +60,17 @@ const ArticlesViewer: React.FC = () => {
         borderColor={colors.c4}
         backgroundColor={colors.c4}
         gap="10px">
-
-            <Box width={widths.w7} fontSize={fonts.f4}>
-                <ArticlesRadio articles={articles}/>
-            </Box>
+            <ArticlesRadio 
+            articles={articles}
+            onClick={radioClickHandler}
+            onDoubleClick={radioDoubleClickHandler}
+            />
 
             <Box>
                 {articles[viewing]?.title}
             </Box>
-            
+
+            {page>1?<Button onClick={goToPreviousPage}>Back</Button>:null}
             {nextPage?<Button onClick={goToNextPage}>Next</Button>:null}
             
         </Box>
