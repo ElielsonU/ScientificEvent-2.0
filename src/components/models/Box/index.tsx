@@ -3,7 +3,6 @@ import breakpoints from "@/styles/breakpoints";
 import { getMediaQuery } from "@/utils/algorithm";
 import { 
     ContentProps,
-    DisplayProps, 
     ItemsProps, 
     LinearGradientProps, 
     FlexDirectionProps,
@@ -20,7 +19,7 @@ interface StyledBoxProps {
     borderColor?: string;
     borderWidth?: string;
     boxSize?: BreakPointsProps;
-    display?: DisplayProps;
+    display?: string;
     flexDirection?: FlexDirectionProps;
     flexGrow?: string;
     fontSize?: string;

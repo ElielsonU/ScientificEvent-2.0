@@ -27,8 +27,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const article = await getarticle(Number(context.params?.id))
 
-    console.log(article)
-
     return {
         props: { article } 
     }
@@ -44,6 +42,5 @@ interface ArticleProps {
 }
 
 export default function Article (props: ArticleProps) {
-
-    return <ArticlePage/>
+    return <ArticlePage article={props.article}/>
 }

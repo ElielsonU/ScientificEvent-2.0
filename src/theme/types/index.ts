@@ -9,12 +9,18 @@ type BreakPointsProps = {
 type BreakPointsValuesProps = { width: number; height: number; }
 
 type ContentProps = "space-between" | "space-around" | ItemsProps;
-type DisplayProps = "flex" | "grid";
 type FlexDirectionProps = "row" | "row-reverse" | "column" | "column-reverse";
 type LinearGradientProps = {
     degrees?: string;
     c1?: string;
     c2?: string;
+}
+
+type ArticlesProps = {
+    content: string;
+    id: string;
+    title: string;
+    user_id: string;
 }
 
 type InputProps = {
@@ -40,10 +46,10 @@ interface UserProps {
 
 
 export type { 
+    ArticlesProps,
     BreakPointsProps,
     BreakPointsValuesProps,
     ContentProps, 
-    DisplayProps,
     FlexDirectionProps,
     LinearGradientProps, 
     InputProps,

@@ -71,7 +71,7 @@ const postarticle = async ( title: string, content: string, email: string) => {
     }
 
     try {
-        const res = await axios.post("http://localhost:8000/articles", data) 
+        await axios.post("http://localhost:8000/articles", data) 
         
         alert("Article submited!")
 
