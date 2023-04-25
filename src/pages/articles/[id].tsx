@@ -2,7 +2,7 @@ import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import ArticlePage from "@/components/templates/ArticlePage";
 import { getarticleslength, getarticle } from "@/utils/api-connection";
-
+import { useRouter } from "next/router";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const article = await getarticle(Number(context.params?.id))
+    const article = await getarticle(Number(context.params?.id)) || null
 
     return {
         props: { article } 
@@ -42,5 +42,9 @@ interface ArticleProps {
 }
 
 export default function Article (props: ArticleProps) {
+    const router = useRouter()
+
+    if (!props.article && typeof window != "undefined") { router.replace("/") }
+
     return <ArticlePage article={props.article}/>
 }

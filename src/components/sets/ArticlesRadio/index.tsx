@@ -8,15 +8,15 @@ import { ArticlesProps } from "@/theme/types";
 const RadioArea = styled.div`
     overflow: hidden;
     border: ${thickness.t3} solid ${colors.c2};
-    border-radius: ${radius.r4};
+    border-radius: 15px 15px 0px 0px;
     background-color: ${colors.c2};
-    width: ${widths.w5};
-    font-size: ${fonts.f3};
+    font-size: ${fonts.f4};
+    width: ${widths.w1};
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
-    height: 365px;
+    height: ${widths.w4};
     
     input[type="radio"] {
         position: absolute;
@@ -26,6 +26,8 @@ const RadioArea = styled.div`
     label {
         display: block;
         padding: 4px 8px;
+        width: ${widths.w1};
+        white-space: nowrap;
     }
 
     input[type="radio"]:checked + label { 
@@ -34,11 +36,9 @@ const RadioArea = styled.div`
     }
 `
 
-interface RadioBoxProps extends PropsWithChildren {
-    name?: string;
+interface RadioBoxProps {
     onClick?: React.MouseEventHandler;
     onDoubleClick?: Function;
-    value?: number | string;
     articles?: Array<ArticlesProps>; 
 }
 
@@ -55,7 +55,13 @@ const ArticlesRadio:React.FC<RadioBoxProps> = ({
     return (
         <RadioArea>
             {articles?.map((article, index) => (
-                <Box key={article.id} overflow="hidden" borderRadius={radius.r6}>
+                <Box key={article.id}
+                alignItems="stretch"
+                justifyContent="stretch"
+                display="flex" 
+                overflow="hidden" 
+                height={widths.w9}
+                borderRadius={radius.r6}>
                     <Input 
                     type="radio" 
                     name="article"

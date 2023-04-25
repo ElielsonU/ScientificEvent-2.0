@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { useRouter } from "next/router";
 
-import { widths, fonts, colors, thickness } from "@/theme";
+import { widths, fonts, colors, thickness, radius, weights } from "@/theme";
 
 import { Box, Button } from "@/components/models"
 import ArticlesRadio from "../ArticlesRadio"
@@ -17,6 +18,8 @@ const ArticlesViewer: React.FC = () => {
     const [viewing, setViewing] = useState(-1)
     const [nextPage, setNextPage] = useState(false)
     const [page, setPage] = useState(1)
+
+    const router = useRouter()
 
     useEffect(() => {
         (async function getArticlesList () {
@@ -35,14 +38,14 @@ const ArticlesViewer: React.FC = () => {
     const goToPreviousPage = () => {
         if(page>1) { 
             setViewing(-1)
-            setPage(page - 1)
+            setPage(page - 1) 
         }
     }
 
-    // (index+1)+((page-1)*10)
-
-    const radioDoubleClickHandler = (index: number) => {
-
+    const selectArticle = (index: number) => {
+        if (index > -1 && index < 10) {
+            router.push(`/articles/${(index+1)+((page-1)*10)}`)
+        }
     }
 
     const radioClickHandler = (event: React.MouseEvent) => {
@@ -53,26 +56,46 @@ const ArticlesViewer: React.FC = () => {
     return (
         <Box 
         width={widths.w1} 
-        height={widths.w1} 
+        flexGrow="1"
         display="flex"
-        alignItems="center"
-        borderWidth={thickness.t1}
-        borderColor={colors.c4}
-        backgroundColor={colors.c4}
-        gap="10px">
+        alignItems="center">
             <ArticlesRadio 
             articles={articles}
             onClick={radioClickHandler}
-            onDoubleClick={radioDoubleClickHandler}
-            />
+            onDoubleClick={selectArticle}/>
+            <Box width={widths.w1} display="flex" height={widths.w4} 
+            borderRadius="0px 0px 15px 15px"backgroundColor={colors.c1} overflow="hidden" 
+            flexDirection="column" borderWidth={thickness.t3} borderColor={colors.c2}>
+                <Box display="flex" width={widths.w1} flexGrow="1" padding="8px 5px" color={colors.c2} flexDirection="column">
+                    <Box as="h2" fontSize={fonts.f2}>
+                        Title: {articles[viewing]?.title}
+                    </Box>
+                    <Box fontSize={fonts.f4} fontWeight={weights.bold} display="flex" justifyContent="space-between">
+                        <Box>ID: {articles[viewing]?.id}</Box>
+                        <Box>User ID: {articles[viewing]?.user_id}</Box>
+                    </Box>
+                </Box>
 
-            <Box>
-                {articles[viewing]?.title}
+                <Box 
+                display="flex"  
+                fontSize={fonts.f4} 
+                fontWeight={weights.bold}
+                gap="2px"
+                alignItems="stretch">
+                    <Button 
+                    onClick={goToPreviousPage} 
+                    style={{flexGrow: "1"}}
+                    padding="5px 0px">Back</Button>
+                    <Button 
+                    onClick={() => {selectArticle(viewing)}} 
+                    style={{flexGrow: "1"}}
+                    padding="5px 0px">o</Button>
+                    <Button 
+                    onClick={goToNextPage} 
+                    style={{flexGrow: "1"}}
+                    padding="5px 0px">Next</Button>
+                </Box>
             </Box>
-
-            {page>1?<Button onClick={goToPreviousPage}>Back</Button>:null}
-            {nextPage?<Button onClick={goToNextPage}>Next</Button>:null}
-            
         </Box>
     )
 }

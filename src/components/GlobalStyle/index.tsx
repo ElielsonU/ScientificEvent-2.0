@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
         color: inherit;
         font-size: inherit;
         font-family: inherit;
+        font-weight: inherit;
         margin: 0;
         outline: 0 solid;
         padding: 0;

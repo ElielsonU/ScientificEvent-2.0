@@ -1,6 +1,8 @@
 import { Box } from "@/components/models";
 import React from "react";
 
+import { widths, colors, fonts } from "@/theme";
+
 interface ArticlesPageProps {
     article: {
         title: string,
@@ -11,11 +13,19 @@ interface ArticlesPageProps {
 }
 
 const ArticlePage:React.FC<ArticlesPageProps> = ({ article }) => {
-    
     return (
-        <Box>
-            <Box as="h1">{article.title}</Box>
-            <Box as="p">{article.content}</Box>
+        <Box 
+        backgroundColor={colors.c1} 
+        height={widths.w1} 
+        color={colors.c2} 
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        textAlign="center"
+        padding="3px 5px"
+        gap="20px">
+            <Box as="h1" fontSize={fonts.f3}>{article?.title}</Box>
+            <Box as="p" fontSize={fonts.f5}>{article?.content}</Box>
         </Box>
     )
 }
